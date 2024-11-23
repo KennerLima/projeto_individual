@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Topázio</title>
+
+    <script src="./js/sessao.js"></script>
+    <script src="./js/script.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="assets/icon/logo.png" />
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" /> -->
+</head>
+
+<body>
+
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <div class="logo" onclick="redirecionarHome()">
+                <img src="assets/icon/logo.png">
+                <h2>Topázio</h2>
+            </div>
+            <ul class="nav-bar">
+                <li id="li_select" class="li-select">
+                    <a id="ancor_quem_somos" class="titulo-select text" href="quemSomos.html">Quem Somos</a>
+                    <Select id="select_quem_somos" class="menu text" onchange="redirecionar(select_quem_somos)">
+                        <option value="nada" class="nada" selected></option>
+                        <option value="quemSomos.html">Desbravadores</option>
+                        <option value="clube_topazio">Clube Topázio</option>
+                    </Select>
+                </li>
+                <li>
+                    <a class="text" href="sobre_mim.html">Sobre Mim</a>
+                </li>
+                <li id="li-select" class="li-select">
+                    <a id="ancor_projetos" class="titulo-select text" href="projetos.html">Projetos</a>
+                    <select id="select_projetos" class="menu text class" onchange="redirecionar(select_projetos)">
+                        <option value="projetos" class="nada"></option>
+                        <option value="arrecadacao_alimento">Arrecadação de Alimentos</option>
+                        <option value="campanha_agasalho">Campanha de Agasalhos</option>
+                        <option value="quebrando_silencio">Quebrando o Silêncio</option>
+                        <option value="missao_calebe">Missão Calebe</option>
+                    </select>
+                </li>
+                <li>
+                    <a href="cadastro.html" class="text">Cadastrar</a>
+                </li>
+                <li>
+                    <a href="login.html" class="text">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--header fim-->
+</body>
+
+</html>

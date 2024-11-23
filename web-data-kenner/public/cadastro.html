@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Topázio</title>
+
+  <script src="./js/sessao.js"></script>
+  <script src="./js/script.js"></script>
+
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" href="assets/icon/logo.png" />
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com" /> -->
+</head>
+
+<body>
+
+  <!--header inicio-->
+  <div class="header">
+    <div class="container">
+      <div class="logo" onclick="redirecionarHome()">
+        <img src="assets/icon/logo.png">
+        <h2>Topázio</h2>
+      </div>
+      <ul class="nav-bar">
+        <li id="li_select" class="li-select">
+          <a id="ancor_quem_somos" class="titulo-select text" href="quemSomos.html">Quem Somos</a>
+          <Select id="select_quem_somos" class="menu text" onchange="redirecionar(select_quem_somos)">
+            <option value="nada" class="nada" selected></option>
+            <option value="quemSomos.html">Desbravadores</option>
+            <option value="clube_topazio">Clube Topázio</option>
+          </Select>
+        </li>
+        <li>
+          <a class="text" href="sobre_mim.html">Sobre Mim</a>
+        </li>
+        <li id="li-select" class="li-select">
+          <a id="ancor_projetos" class="titulo-select text" href="projetos.html">Projetos</a>
+          <select id="select_projetos" class="menu text class" onchange="redirecionar(select_projetos)">
+            <option value="projetos" class="nada"></option>
+            <option value="arrecadacao_alimento">Arrecadação de Alimentos</option>
+            <option value="campanha_agasalho">Campanha de Agasalhos</option>
+            <option value="quebrando_silencio">Quebrando o Silêncio</option>
+            <option value="missao_calebe">Missão Calebe</option>
+          </select>
+        </li>
+        <li>
+          <a href="cadastro.html" class="text">Cadastrar</a>
+        </li>
+        <li>
+          <a href="login.html" class="text">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--header fim-->
+
+  <!-- cadastro inicio -->
+  <div class="cadastro">
+    <div class="container">
+      <div class="card-cadastro">
+        <h2>Bem-vindo!</h2>
+
+        <!-- inicio formulario dados pessoais -->
+        <div class="formulario" id="formulario_cadastro">
+          <div class="campo-dados-pessoais">
+            <h3>Dados Pessoais</h3>
+            <div class="campo-linha">
+              <div class="campo">
+                <span>Nome</span>
+                <input id="nome_input" type="text" placeholder="Seu nome" />
+              </div>
+              <div class="campo">
+                <span>Data de Nascimento:</span>
+                <input id="dtNasc_input" type="date" />
+              </div>
+            </div>
+            <div class="campo-linha">
+              <div class="campo">
+                <span>Telefone</span>
+                <input id="telefone_input" type="number" placeholder="(11) 987654321" />
+              </div>
+              <div class="campo">
+                <span>E-mail</span>
+                <input id="email_input" type="text" placeholder="carlos@gmail.com" />
+              </div>
+            </div>
+            <div class="campo-linha">
+              <div class="campo">
+                <span>Senha</span>
+                <input id="senha_input" type="password" placeholder="******" />
+              </div>
+              <div class="campo">
+                <span>Confirmação da Senha</span>
+                <input id="confirmacao_senha_input" type="password" placeholder="******" />
+              </div>
+            </div>
+          </div>
+          <button onclick="mudarFormulario(formulario_cadastro, formulario_endereco)">Proximo ></button>
+        </div>
+        <!-- fim formulario dados pessoais -->
+
+        <!-- inicio formulario endereco -->
+        <div class="formulario" id="formulario_endereco">
+          <div class="campo-dados-pessoais">
+            <h3>Endereço</h3>
+            <div class="campo-linha">
+              <div class="campo campo1" id="cep_div">
+                <span>CEP</span>
+                <input id="cep_input" type="number" />
+              </div>
+              <div class="campo campo2" id="rua_div">
+                <span>Rua</span>
+                <input id="rua_input" type="text" />
+              </div>
+              <div class="campo campo3" id="numero_div">
+                <span>Número</span>
+                <input id="numero_input" type="number" />
+              </div>
+            </div>
+            <div class="campo-linha">
+              <div class="campo campo4" id="complemento_div">
+                <span>Complemento</span>
+                <input id="complemento_input" type="text" placeholder="Seu nome" />
+              </div>
+            </div>
+            <div class="campo-linha">
+              <div class="campo campo1" id="bairro_div">
+                <span>Bairro</span>
+                <input id="bairro_input" type="text" placeholder="" />
+              </div>
+              <div class="campo campo2" id="cidade_div">
+                <span>Cidade</span>
+                <input id="cidade_input" type="text" placeholder="" />
+              </div>
+              <div class="campo campo3" id="estado_div">
+                <span>Estado</span>
+                <input id="estado_input" type="text" placeholder="" />
+              </div>
+            </div>
+          </div>
+          <div class="buttons">
+            <button onclick="mudarFormulario(formulario_endereco, formulario_cadastro)">< Voltar</button>
+            <button onclick="mudarFormulario(formulario_endereco, formulario_classe)">Próximo ></button>
+          </div>
+        </div>
+        <!-- final formulario endereco -->
+
+        <!-- inicio formulario desbravadores -->
+        <div class="formulario formulario-desbravadores" id="formulario_classe">
+          <div class="titulos">
+            <h3>Classes Regulares</h3>
+            <h3>Classes Avançadas</h3>
+            <h3>Especialidades</h3>
+          </div>
+          <div class="campo-desbravadores">
+            <div class="regulares">
+              <label class="label-classe">
+                <input type="checkbox" value="1" id="input_amigo">
+                <div class="classe amigo">
+                  <img class="icon" src="./assets/icon/classes/icon-amigo.png">
+                  <span>Amigo</span>
+                </div>
+              </label>
+              <label class="label-classe">
+                <input type="checkbox" value="3" id="input_companheiro">
+                <div class="classe companheiro">
+                  <img class="icon" src="./assets/icon/classes/icon-companheiro.png">
+                  <span>Companheiro</span>
+                </div>
+              </label>
+              <label class="label-classe">
+                <input type="checkbox" value="5" id="input_pesquisador">
+                <div class="classe pesquisador">
+                  <img class="icon" src="./assets/icon/classes/icon-pesquisador.png">
+                  <span>Pesquisador</span>
+                </div>
+              </label>
+              <label class="label-classe">
+                <input type="checkbox" value="7" id="input_pioneiro">
+                <div class="classe pioneiro">
+                  <img class="icon" src="./assets/icon/classes/icon-pioneiro.png">
+                  <span>Pioneiro</span>
+                </div>
+              </label>
+              <label class="label-classe">
+                <input type="checkbox" value="9" id="input_excursionista">
+                <div class="classe excursionista">
+                  <img class="icon" src="./assets/icon/classes/icon-excursionista.png">
+                  <span>Excursionista</span>
+                </div>
+              </label>
+              <label class="label-classe">
+                <input type="checkbox" value="11" id="input_guia">
+                <div class="classe guia">
+                  <img class="icon" src="./assets/icon/classes/icon-guia.png">
+                  <span>Guia</span>
+                </div>
+              </label>
+            </div>
+            <div class="avancadas">
+              <label class="label-classe">
+                <input type="checkbox" value="2" id="input_amigo_natureza">
+                <div class="classe amigo">
+                  <img class="icon" src="./assets/icon/classes/icon-amigo.png">
+                  <span>Amigo da Natureza</span>
+                </div>
+              </label>
+              <label class="label-classe" id="classe_a">
+                <input type="checkbox" value="4" id="input_companheiro_excursionismo">
+                <div class="classe companheiro">
+                  <img class="icon" src="./assets/icon/classes/icon-companheiro.png">
+                  <span>Companheiro de Excursionismo</span>
+                </div>
+              </label>
+              <label class="label-classe" id="classe_a">
+                <input type="checkbox" value="6" id="input_pesquisador_campo">
+                <div class="classe pesquisador">
+                  <img class="icon" src="./assets/icon/classes/icon-pesquisador.png">
+                  <span>Pesquisador de Campo e Bosque</span>
+                </div>
+              </label>
+              <label class="label-classe" id="classe_a">
+                <input type="checkbox" value="8" id="input_pioneiro_fronteiras">
+                <div class="classe pioneiro">
+                  <img class="icon" src="./assets/icon/classes/icon-pioneiro.png">
+                  <span>Pioneiro de Novas Fronteiras</span>
+                </div>
+              </label>
+              <label class="label-classe" id="classe_a">
+                <input type="checkbox" value="10" id="input_excursionista_mata">
+                <div class="classe excursionista">
+                  <img class="icon" src="./assets/icon/classes/icon-excursionista.png">
+                  <span>Excursionista na Mata</span>
+                </div>
+              </label>
+              <label class="label-classe">
+                <input type="checkbox" value="12" id="input_guia_exploracao">
+                <div class="classe guia">
+                  <img class="icon" src="./assets/icon/classes/icon-guia.png">
+                  <span>Guia de Exploração</span>
+                </div>
+              </label>
+            </div>
+            <div class="especialidades" id="div_especialidades">
+              <select id="select_categoria" onchange="verificarOpcaoSelecionada(select_categoria)">
+                <option value="nada" class="nada" selected>Escolha uma opção</option>
+                <option value="0-atividades-recreativas/">Atividades Recreativas</option>
+                <option value="1-artes-habilidades-manuais/">Artes Habilidades Manuais</option>
+              </select>
+              <!-- <div id="div_0-atividades-recreativas/" class="card-especialidades">
+                 <label class="label-especialidades">
+                  <input type="checkbox" value="">
+                  <div>
+                    <img src="">
+                    <span></span>
+                  </div> 
+                </label> 
+              </div> -->
+            </div>
+          </div>
+          <div class="buttons">
+            <button onclick="mudarFormulario(formulario_classe, formulario_endereco)" id="voltar">Voltar</button>
+            <button onclick="cadastrar()" id="proximo">Cadastrar ></button>
+          </div>
+        </div>
+        <!-- fim formulario desbravadores -->
+      </div>
+    </div>
+  </div>
+  <!-- fim cadastro -->
+  <div id="div_erros_login"></div>
+  <div class="card_erro" id="cardErro">
+    <span id="mensagem_erro"></span>
+  </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  formulario_cadastro.style.display = 'flex'
+  formulario_endereco.style.display = 'none'
+  formulario_classe.style.display = 'none'
+
+
+</script>
