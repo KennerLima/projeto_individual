@@ -9,9 +9,9 @@
   <title>Topázio</title>
 
   <script src="./js/sessao.js"></script>
-  <script src="./js/script.js"></script>
 
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/cadastro_login.css">
   <link rel="icon" href="assets/icon/logo.png" />
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com" /> -->
 </head>
@@ -27,10 +27,10 @@
       </div>
       <ul class="nav-bar">
         <li id="li_select" class="li-select">
-          <a id="ancor_quem_somos" class="titulo-select text" href="quemSomos.html">Quem Somos</a>
+          <a id="ancor_quem_somos" class="titulo-select text" href="quem-somos.html">Quem Somos</a>
           <Select id="select_quem_somos" class="menu text" onchange="redirecionar(select_quem_somos)">
             <option value="nada" class="nada" selected></option>
-            <option value="quemSomos.html">Desbravadores</option>
+            <option value="quem-somos.html">Desbravadores</option>
             <option value="clube_topazio">Clube Topázio</option>
           </Select>
         </li>
@@ -60,6 +60,11 @@
 
   <!-- cadastro inicio -->
   <div class="cadastro">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
     <div class="container">
       <div class="card-cadastro">
         <h2>Bem-vindo!</h2>
@@ -143,127 +148,167 @@
             </div>
           </div>
           <div class="buttons">
-            <button onclick="mudarFormulario(formulario_endereco, formulario_cadastro)">< Voltar</button>
-            <button onclick="mudarFormulario(formulario_endereco, formulario_classe)">Próximo ></button>
+            <button onclick="mudarFormulario(formulario_endereco, formulario_cadastro)">
+              < Voltar</button>
+                <button onclick="mudarFormulario(formulario_endereco, formulario_desbravadores)">Próximo ></button>
           </div>
         </div>
         <!-- final formulario endereco -->
 
         <!-- inicio formulario desbravadores -->
-        <div class="formulario formulario-desbravadores" id="formulario_classe">
-          <div class="titulos">
-            <h3>Classes Regulares</h3>
-            <h3>Classes Avançadas</h3>
-            <h3>Especialidades</h3>
-          </div>
+        <div class="formulario" id="formulario_desbravadores">
           <div class="campo-desbravadores">
-            <div class="regulares">
-              <label class="label-classe">
-                <input type="checkbox" value="1" id="input_amigo">
-                <div class="classe amigo">
-                  <img class="icon" src="./assets/icon/classes/icon-amigo.png">
-                  <span>Amigo</span>
-                </div>
-              </label>
-              <label class="label-classe">
-                <input type="checkbox" value="3" id="input_companheiro">
-                <div class="classe companheiro">
-                  <img class="icon" src="./assets/icon/classes/icon-companheiro.png">
-                  <span>Companheiro</span>
-                </div>
-              </label>
-              <label class="label-classe">
-                <input type="checkbox" value="5" id="input_pesquisador">
-                <div class="classe pesquisador">
-                  <img class="icon" src="./assets/icon/classes/icon-pesquisador.png">
-                  <span>Pesquisador</span>
-                </div>
-              </label>
-              <label class="label-classe">
-                <input type="checkbox" value="7" id="input_pioneiro">
-                <div class="classe pioneiro">
-                  <img class="icon" src="./assets/icon/classes/icon-pioneiro.png">
-                  <span>Pioneiro</span>
-                </div>
-              </label>
-              <label class="label-classe">
-                <input type="checkbox" value="9" id="input_excursionista">
-                <div class="classe excursionista">
-                  <img class="icon" src="./assets/icon/classes/icon-excursionista.png">
-                  <span>Excursionista</span>
-                </div>
-              </label>
-              <label class="label-classe">
-                <input type="checkbox" value="11" id="input_guia">
-                <div class="classe guia">
-                  <img class="icon" src="./assets/icon/classes/icon-guia.png">
-                  <span>Guia</span>
-                </div>
-              </label>
+             <div class="campo-classes">
+              <h3>Classes</h3>
+              <div class="classes scroll-moderno">
+                <label class="label-classe">
+                  <input type="checkbox" value="1" id="input_amigo">
+                  <div class="classe amigo">
+                    <img class="icon" src="./assets/icon/classes/icon-amigo.png">
+                    <span>Amigo</span>
+                  </div>
+                </label>
+                <label class="label-classe">
+                  <input type="checkbox" value="3" id="input_companheiro">
+                  <div class="classe companheiro">
+                    <img class="icon" src="./assets/icon/classes/icon-companheiro.png">
+                    <span>Companheiro</span>
+                  </div>
+                </label>
+                <label class="label-classe">
+                  <input type="checkbox" value="5" id="input_pesquisador">
+                  <div class="classe pesquisador">
+                    <img class="icon" src="./assets/icon/classes/icon-pesquisador.png">
+                    <span>Pesquisador</span>
+                  </div>
+                </label>
+                <label class="label-classe">
+                  <input type="checkbox" value="7" id="input_pioneiro">
+                  <div class="classe pioneiro">
+                    <img class="icon" src="./assets/icon/classes/icon-pioneiro.png">
+                    <span>Pioneiro</span>
+                  </div>
+                </label>
+                <label class="label-classe">
+                  <input type="checkbox" value="9" id="input_excursionista">
+                  <div class="classe excursionista">
+                    <img class="icon" src="./assets/icon/classes/icon-excursionista.png">
+                    <span>Excursionista</span>
+                  </div>
+                </label>
+                <label class="label-classe">
+                  <input type="checkbox" value="11" id="input_guia">
+                  <div class="classe guia">
+                    <img class="icon" src="./assets/icon/classes/icon-guia.png">
+                    <span>Guia</span>
+                  </div>
+                </label>
+                <label class="label-classe">
+                  <input type="checkbox" value="2" id="input_amigo_natureza">
+                  <div class="classe amigo">
+                    <img class="icon" src="./assets/icon/classes/icon-amigo.png">
+                    <span>Amigo da Natureza</span>
+                  </div>
+                </label>
+                <label class="label-classe" id="classe_a">
+                  <input type="checkbox" value="4" id="input_companheiro_excursionismo">
+                  <div class="classe companheiro">
+                    <img class="icon" src="./assets/icon/classes/icon-companheiro.png">
+                    <span>Companheiro de Excursionismo</span>
+                  </div>
+                </label>
+                <label class="label-classe" id="classe_a">
+                  <input type="checkbox" value="6" id="input_pesquisador_campo">
+                  <div class="classe pesquisador">
+                    <img class="icon" src="./assets/icon/classes/icon-pesquisador.png">
+                    <span>Pesquisador de Campo e Bosque</span>
+                  </div>
+                </label>
+                <label class="label-classe" id="classe_a">
+                  <input type="checkbox" value="8" id="input_pioneiro_fronteiras">
+                  <div class="classe pioneiro">
+                    <img class="icon" src="./assets/icon/classes/icon-pioneiro.png">
+                    <span>Pioneiro de Novas Fronteiras</span>
+                  </div>
+                </label>
+                <label class="label-classe" id="classe_a">
+                  <input type="checkbox" value="10" id="input_excursionista_mata">
+                  <div class="classe excursionista">
+                    <img class="icon" src="./assets/icon/classes/icon-excursionista.png">
+                    <span>Excursionista na Mata</span>
+                  </div>
+                </label>
+                <label class="label-classe">
+                  <input type="checkbox" value="12" id="input_guia_exploracao">
+                  <div class="classe guia">
+                    <img class="icon" src="./assets/icon/classes/icon-guia.png">
+                    <span>Guia de Exploração</span>
+                  </div>
+                </label>
+              </div>
             </div>
-            <div class="avancadas">
-              <label class="label-classe">
-                <input type="checkbox" value="2" id="input_amigo_natureza">
-                <div class="classe amigo">
-                  <img class="icon" src="./assets/icon/classes/icon-amigo.png">
-                  <span>Amigo da Natureza</span>
-                </div>
-              </label>
-              <label class="label-classe" id="classe_a">
-                <input type="checkbox" value="4" id="input_companheiro_excursionismo">
-                <div class="classe companheiro">
-                  <img class="icon" src="./assets/icon/classes/icon-companheiro.png">
-                  <span>Companheiro de Excursionismo</span>
-                </div>
-              </label>
-              <label class="label-classe" id="classe_a">
-                <input type="checkbox" value="6" id="input_pesquisador_campo">
-                <div class="classe pesquisador">
-                  <img class="icon" src="./assets/icon/classes/icon-pesquisador.png">
-                  <span>Pesquisador de Campo e Bosque</span>
-                </div>
-              </label>
-              <label class="label-classe" id="classe_a">
-                <input type="checkbox" value="8" id="input_pioneiro_fronteiras">
-                <div class="classe pioneiro">
-                  <img class="icon" src="./assets/icon/classes/icon-pioneiro.png">
-                  <span>Pioneiro de Novas Fronteiras</span>
-                </div>
-              </label>
-              <label class="label-classe" id="classe_a">
-                <input type="checkbox" value="10" id="input_excursionista_mata">
-                <div class="classe excursionista">
-                  <img class="icon" src="./assets/icon/classes/icon-excursionista.png">
-                  <span>Excursionista na Mata</span>
-                </div>
-              </label>
-              <label class="label-classe">
-                <input type="checkbox" value="12" id="input_guia_exploracao">
-                <div class="classe guia">
-                  <img class="icon" src="./assets/icon/classes/icon-guia.png">
-                  <span>Guia de Exploração</span>
-                </div>
-              </label>
+            <div class="campo-informacoes-clube">
+              <h3>Unidade</h3>
+              <div class="unidades">
+                <label class="label-unidade">
+                  <input type="radio" name="check_unidade" value="Ônix">
+                  <div class="campo-unidade onix">
+                    <img src="assets/icon/unidades/onix.png">
+                    <span>Ônix</span>
+                  </div>
+                </label>
+                <label class="label-unidade">
+                  <input type="radio" name="check_unidade" value="Ametista">
+                  <div class="campo-unidade ametista">
+                    <img src="assets/icon/unidades/ametista.png">
+                    <span>Ametista</span>
+                  </div>
+                </label>
+                <label class="label-unidade">
+                  <input type="radio" name="check_unidade" value="Jaspe">
+                  <div class="campo-unidade jaspe">
+                    <img src="assets/icon/unidades/jaspe.png">
+                    <span>Jaspe</span>
+                  </div>
+                </label>
+                <label class="label-unidade">
+                  <input type="radio" name="check_unidade" value="Safira">
+                  <div class="campo-unidade safira">
+                    <img src="assets/icon/unidades/safira.png">
+                    <span>Safira</span>
+                  </div>
+                </label>
+              </div>
+              <div class="cargos">
+                <h3>Cargo</h3>
+                <select id="select_cargo_diretoria" name="select_cargo">
+                  <option value="Conselheiro">Conselheiro</option>
+                  <option value="Conselheiro Associado">Conselheiro Associado</option>
+                  <option value="Diretor">Diretor</option>
+                  <option value="Diretor Associado">Diretor Associado</option>
+                  <option value="Secretário">Secretário</option>
+                  <option value="Tesoureiro">Tesoureiro</option>
+                  <option value="Instrutor">Instrutor</option>
+                </select>
+                <select id="select_cargo_desbravador" name="select_cargo">
+                  <option value="Capitão de Unidade">Capitão de Unidade</option>
+                  <option value="Secretário de Unidade">Secretário de Unidade</option>
+                  <option value="Tesoureiro de Unidade">Tesoureiro de Unidade</option>
+                  <option value="Capelão de Unidade">Capelão de Unidade</option>
+                </select>
+              </div>
             </div>
             <div class="especialidades" id="div_especialidades">
+              <h3>Especialidades</h3>
               <select id="select_categoria" onchange="verificarOpcaoSelecionada(select_categoria)">
                 <option value="nada" class="nada" selected>Escolha uma opção</option>
                 <option value="0-atividades-recreativas/">Atividades Recreativas</option>
                 <option value="1-artes-habilidades-manuais/">Artes Habilidades Manuais</option>
               </select>
-              <!-- <div id="div_0-atividades-recreativas/" class="card-especialidades">
-                 <label class="label-especialidades">
-                  <input type="checkbox" value="">
-                  <div>
-                    <img src="">
-                    <span></span>
-                  </div> 
-                </label> 
-              </div> -->
             </div>
           </div>
           <div class="buttons">
-            <button onclick="mudarFormulario(formulario_classe, formulario_endereco)" id="voltar">Voltar</button>
+            <button onclick="mudarFormulario(formulario_desbravadores, formulario_endereco)" id="voltar">Voltar</button>
             <button onclick="cadastrar()" id="proximo">Cadastrar ></button>
           </div>
         </div>
@@ -273,18 +318,294 @@
   </div>
   <!-- fim cadastro -->
   <div id="div_erros_login"></div>
-  <div class="card_erro" id="cardErro">
-    <span id="mensagem_erro"></span>
-  </div>
-  </div>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>
 
 <script>
-  formulario_cadastro.style.display = 'flex'
+  formulario_cadastro.style.display = 'none'
   formulario_endereco.style.display = 'none'
-  formulario_classe.style.display = 'none'
+  formulario_desbravadores.style.display = 'flex'
 
+  var idade = 0
 
+  function calcularIdade() {
+    idade = ""
+    var dtNasc = dtNasc_input.value
+    var anoAtual = 2024
+
+    for (var i = 0; i <= 3; i++) {
+      idade += dtNasc[i]
+    }
+    console.log(idade)
+
+    idade = anoAtual - Number(idade)
+    console.log(idade)
+
+    if (idade >= 16) {
+      select_cargo_desbravador.style.display = 'none'
+      select_cargo_diretoria.style.display = 'flex'
+      return
+    }
+    select_cargo_diretoria.style.display = 'none'
+    select_cargo_desbravador.style.display = 'flex'
+    return
+  }
+
+  setTimeout(() => {
+    criarEspecialidades()
+  }, 1000)
+
+  function criarEspecialidades() {
+    for (var categoriaAtual = 0; categoriaAtual < categorias.length; categoriaAtual++) {
+      var categoria = categorias[categoriaAtual]
+      var div = "div_" + categoria.caminho
+      var html = `<div id="${div}" class="card-especialidades scroll-moderno">`
+
+      for (var espAtual = 0; espAtual < categoria.especialidades.length; espAtual++) {
+        var especialidade = categoria.especialidades[espAtual]
+        html += `
+                <label class="label-especialidades">
+                <input type="checkbox" id="input_${especialidade.caminho}">
+                <div class="campo-especialidade">
+                <img src="./assets/icon/especialidades/${categoria.caminho + especialidade.caminho}.png">
+                <span> ${especialidade.nome} </span>
+                </div>
+                </label>`
+      }
+      html += `</div>`
+      div_especialidades.innerHTML += html
+      var divCategoria = document.getElementById("div_" + categoria.caminho)
+      divCategoria.style.display = 'none'
+    }
+    inserirIdInputsEspecialidades()
+  }
+
+  function mudarFormulario(atual, proximo) {
+    atual.style.display = 'none'
+    proximo.style.display = 'flex'
+    if (proximo == formulario_desbravadores) {
+      calcularIdade()
+    }
+  }
+
+  const listaIdInputEspecialidades = []
+  function inserirIdInputsEspecialidades() {
+
+    for (var categoriaAtual = 0; categoriaAtual < categorias.length; categoriaAtual++) {
+      var categoria = categorias[categoriaAtual]
+      var divId = "div_" + categoria.caminho
+      var divCategoria = document.getElementById(divId)
+
+      if (divCategoria) {
+        for (var espAtual = 0; espAtual < categoria.especialidades.length; espAtual++) {
+          var especialidade = categoria.especialidades[espAtual]
+          var inputId = document.getElementById("input_" + especialidade.caminho)
+
+          listaIdInputEspecialidades.push(inputId)
+        }
+      }
+    }
+  }
+
+  function verificarOpcaoSelecionada(opcao) {
+    for (var categoriaAtual = 0; categoriaAtual < categorias.length; categoriaAtual += 1) {
+      var caminho = categorias[categoriaAtual].caminho
+      var div = document.getElementById("div_" + caminho)
+      div.style.display = 'none'
+
+      if (opcao.value == caminho) {
+        div.style.display = 'flex'
+      }
+
+    }
+  }
+
+  var listaClassesSelecionadas = []
+  function inserirClassesSelecionadasLista() {
+    const listaIdInputClasse = [input_amigo, input_amigo_natureza, input_companheiro, input_companheiro_excursionismo, input_pesquisador, input_pesquisador_campo, input_pioneiro, input_pioneiro_fronteiras, input_excursionista, input_excursionista_mata, input_guia, input_guia_exploracao]
+    for (var posicaoAtual = 0; posicaoAtual < listaIdInputClasse.length; posicaoAtual += 1) {
+
+      if (listaIdInputClasse[posicaoAtual].checked) {
+        listaClassesSelecionadas.push(posicaoAtual + 1)
+      }
+    }
+    console.log('Lista de Classes Selecionadas: ' + listaClassesSelecionadas)
+  }
+
+  var listaEspecialidadesSelecionadas = []
+  function inserirEspecialidadesSelecionadasLista() {
+    for (var posicaoInput = 0; posicaoInput < listaIdInputEspecialidades.length; posicaoInput += 1) {
+
+      if (listaIdInputEspecialidades[posicaoInput].checked) {
+        encontrarEspecialidade(listaIdInputEspecialidades[posicaoInput])
+      }
+    }
+    console.log('Lista de Especialidades Selecionadas: ' + listaEspecialidadesSelecionadas)
+  }
+
+  function encontrarEspecialidade(inputAtual) {
+    for (var categoriaAtual = 0; categoriaAtual < categorias.length; categoriaAtual += 1) {
+      var categoria = categorias[categoriaAtual]
+
+      for (var especialidadeAtual = 0; especialidadeAtual < categorias[categoriaAtual].especialidades.length; especialidadeAtual += 1) {
+        var especialidade = categoria.especialidades[especialidadeAtual]
+        var idInputEspecialidadeAtual = document.getElementById("input_" + especialidade.caminho)
+        if (inputAtual == idInputEspecialidadeAtual) {
+          listaEspecialidadesSelecionadas.push(especialidade.nome)
+        }
+      }
+    }
+  }
+
+  function cadastrar() {
+    // aguardar();
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+
+    // variaveis da tabela membro
+    var nomeVar = nome_input.value;
+    var dtNascVar = dtNasc_input.value;
+    var telefoneVar = telefone_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    // console.log('Nome: ' + nomeVar, 'Data Nasc.: ' + dtNascVar, 'Telefone: ' + telefoneVar, 'Email: ' + emailVar, 'Senha:' + senhaVar)
+
+    // variaveis da tabela endereço
+    var cepVar = cep_input.value;
+    var ruaVar = rua_input.value;
+    var numeroVar = numero_input.value;
+    var complementoVar = complemento_input.value;
+    var bairroVar = bairro_input.value;
+    var cidadeVar = cidade_input.value;
+    var estadoVar = estado_input.value;
+    // console.log('CEP: ' + cepVar, 'Rua: ' + ruaVar, 'Numero: ' + numeroVar, 'Complemento: ' + complementoVar, 'Bairro: ' + bairroVar, 'Cidade: ' + cidadeVar, 'Estado: ' + estadoVar)
+
+    // inserção de dados na lista de classes selecionadas
+    inserirClassesSelecionadasLista()
+
+    var checkUnidade = document.getElementsByName("check_unidade")
+    var unidade = ''
+
+    for (var unidadeI = 0; unidadeI < checkUnidade.length; unidadeI += 1) {
+      if (checkUnidade[unidadeI].checked) {
+        unidade = checkUnidade[unidadeI].value
+        console.log("Unidade: " + unidade)
+      }
+    }
+
+    var selectCargo = document.getElementsByName("select_cargo")
+    var cargo = selectCargo.value
+
+    //inserção de dados na lista de especialidades selecionadas
+    inserirEspecialidadesSelecionadasLista()
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      dtNascVar == "" ||
+      telefoneVar == "" || 
+      emailVar == "" ||
+      cepVar == "" ||
+      ruaVar == "" ||
+      numeroVar == "" ||
+      complementoVar == "" ||
+      bairroVar == "" ||
+      cidadeVar == "" ||
+      estadoVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Preencha todos os campos";
+
+      // finalizarAguardar();
+      return false;
+    } else if (telefoneVar.length != 11) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Número de telefone inválido"
+
+    } else if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Email inválido"
+
+    } else if (verificarSenhaInvalida(senhaVar)) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Senha inválida"
+    }
+    else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        dtNascServer: dtNascVar,
+        telefoneServer: telefoneVar,
+        emailServer: emailVar,
+        cepServer: cepVar,
+        ruaServer: ruaVar,
+        numeroServer: numeroVar,
+        complementoServer: complementoVar,
+        bairroServer: bairroVar,
+        cidadeServer: cidadeVar,
+        estadoServer: estadoVar,
+        senhaServer: senhaVar,
+        listaClassesServer: listaClassesSelecionadas,
+        listaEspecialidadesServer: listaEspecialidadesSelecionadas,
+        unidadeServer: unidade
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, 500);
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function verificarSenhaInvalida(senha) {
+    const maisculas = /[A-Z]/
+    const numeros = /[0-9]/
+    const caracteresEspeciais = /[!@#$%^&*(),.?":{}|<>]/
+
+    if (senha.searce(maisculas) == -1 || senha.searce(numeros) == -1 || senha.searce(caracteresEspeciais)) {
+      return true
+    }
+
+    return false
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 </script>

@@ -1,0 +1,152 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("../assets/img/imagem-4-2.jpg");
+    background-size: cover;
+}
+
+.banner span {
+    font-size: 8vh;
+    color: white;
+    margin: 5% 10%;
+}
+
+.apresentacao-desbravadores {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.apresentacao-desbravadores .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.apresentacao-desbravadores .container .card-banner {
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5% 5% 5% 5%;
+    color: white;
+
+    border-radius: 10px;
+
+}
+
+.apresentacao-desbravadores .container .card-banner span {
+    font-size: 8vh;
+    width: 100%;
+    margin: 5% 0;
+    height: auto;
+    max-height: 60%;
+}
+
+.apresentacao-desbravadores .container img {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    max-width: 40%;
+    height: auto;
+    margin-right: 5%;
+}
+
+.apresentacao-desbravadores .container .card-banner a {
+    width: 40%;
+    background: #007bff;
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 4vh;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.apresentacao-desbravadores .container .card-banner a:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+.apresentacao-quem-somos {
+    width: 100%;
+    height: 80vh;
+    background-color: #0056b3;
+}
+
+.apresentacao-quem-somos .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.apresentacao-quem-somos .container img{
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    max-width: 40%;
+    height: auto;
+    margin-right: 5%;
+}
+
+.apresentacao-quem-somos .container .card-desbravadores {
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5% 5% 5% 5%;
+    color: white;
+
+    border-radius: 10px;
+
+}
+
+.apresentacao-quem-somos .container .card-desbravadores span {
+    font-size: 6vh;
+    width: 100%;
+    margin: 5% 0;
+    height: auto;
+    max-height: 60%;
+}
+
+.apresentacao-quem-somos .container img {
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    max-width: 40%;
+    height: auto;
+    margin-right: 5%;
+}
+
+.apresentacao-quem-somos .container .card-desbravadores a {
+    width: 40%;
+    background: #00264e;
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 4vh;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.apresentacao-quem-somos .container .card-desbravadores a:hover {
+    background-color: #000a16;
+    transform: scale(1.05);
+}

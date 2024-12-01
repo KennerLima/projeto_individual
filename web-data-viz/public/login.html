@@ -6,35 +6,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>Topazio</title>
 
-    <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/cadastro_login.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
 <body>
 
     <!--Header-->
-
     <div class="header">
         <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
+            <div class="logo" onclick="redirecionarHome()">
+                <img src="assets/icon/logo.png">
+                <h2>Topázio</h2>
+            </div>
+            <ul class="nav-bar">
+                <li id="li_select" class="li-select">
+                    <a id="ancor_quem_somos" class="titulo-select text" href="quemSomos.html">Quem Somos</a>
+                    <Select id="select_quem_somos" class="menu text" onchange="redirecionar(select_quem_somos)">
+                        <option value="nada" class="nada" selected></option>
+                        <option value="quemSomos.html">Desbravadores</option>
+                        <option value="clube_topazio">Clube Topázio</option>
+                    </Select>
                 </li>
                 <li>
-                    <a href="simulador.html">Simulador</a>
+                    <a class="text" href="sobre_mim.html">Sobre Mim</a>
                 </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
+                <li id="li-select" class="li-select">
+                    <a id="ancor_projetos" class="titulo-select text" href="projetos.html">Projetos</a>
+                    <select id="select_projetos" class="menu text class" onchange="redirecionar(select_projetos)">
+                        <option value="projetos" class="nada"></option>
+                        <option value="arrecadacao_alimento">Arrecadação de Alimentos</option>
+                        <option value="campanha_agasalho">Campanha de Agasalhos</option>
+                        <option value="quebrando_silencio">Quebrando o Silêncio</option>
+                        <option value="missao_calebe">Missão Calebe</option>
+                    </select>
                 </li>
                 <li>
-                    <a href="cadastro.html">Cadastro</a>
+                    <a href="cadastro.html" class="text">Cadastrar</a>
+                </li>
+                <li>
+                    <a href="login.html" class="text">Login</a>
                 </li>
             </ul>
         </div>
@@ -48,55 +64,47 @@
             </div>
         </div>
         <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario">
+            <div class="formulario">
+                <div class="campo-imagem">
+                    <span>Bem Vindo de Volta!</span>
+                    <img src="./assets/img/imagem-login.jpg">
+                </div>
+                <div class="campo-login">
+                    <h1>Login</h1>
                     <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
+                        <span>Email</span>
+                        <input type="text" id="input_email">
                     </div>
                     <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
+                        <span>Senha</span>
+                        <input type="text" id="input_senha">
                     </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
+                    <button onclick="entrar()">Entrar</button>
                 </div>
-
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
-
-                <div id="div_erros_login"></div>
             </div>
+            <div id="div_erros_login"></div>
         </div>
     </div>
-
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-            <span class="version">v1.0.0</span>
-        </div>
-    </div>
-    <!--footer fim-->
 
 </body>
 
+<script src="./js/sessao.js"></script>
+<script src="./js/script.js"></script>
 </html>
 
 <script>
 
 
     function entrar() {
-        aguardar();
+        // aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
         }
         else {

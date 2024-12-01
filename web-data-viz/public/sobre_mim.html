@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo" onclick="redirecionarHome()">
+                <img src="assets/icon/logo.png">
+                <h2>Topázio</h2>
+            </div>
+            <ul class="nav-bar">
+                <li id="li_select" class="li-select">
+                    <a id="ancor_quem_somos" class="titulo-select text" href="quem-somos.html">Quem Somos</a>
+                    <Select id="select_quem_somos" class="menu text" onchange="redirecionar(select_quem_somos)">
+                        <option value="nada" class="nada" selected></option>
+                        <option value="quem-somos.html">Desbravadores</option>
+                        <option value="clube_topazio">Clube Topázio</option>
+                    </Select>
+                </li>
+                <li>
+                    <a class="text" href="sobre_mim.html">Sobre Mim</a>
+                </li>
+                <li id="li-select" class="li-select">
+                    <a id="ancor_projetos" class="titulo-select text" href="projetos.html">Projetos</a>
+                    <select id="select_projetos" class="menu text class" onchange="redirecionar(select_projetos)">
+                        <option value="projetos" class="nada"></option>
+                        <option value="arrecadacao_alimento">Arrecadação de Alimentos</option>
+                        <option value="campanha_agasalho">Campanha de Agasalhos</option>
+                        <option value="quebrando_silencio">Quebrando o Silêncio</option>
+                        <option value="missao_calebe">Missão Calebe</option>
+                    </select>
+                </li>
+                <li>
+                    <a href="cadastro.html" class="text">Cadastrar</a>
+                </li>
+                <li>
+                    <a href="login.html" class="text">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="js/script.js"></script>
+</html>

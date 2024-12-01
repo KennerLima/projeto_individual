@@ -60,7 +60,7 @@ sexoUnidade varchar(45) not null
 )auto_increment = 1000;
 
 insert into unidade (nome, sexoUnidade) values
-('ônix', 'Masculina'),
+('Ônix', 'Masculina'),
 ('Ametista', 'Masculina'),
 ('Jaspe', 'Feminina'),
 ('Safira', 'Feminina');
@@ -136,7 +136,7 @@ insert into cargo (nome, descricao) values
 ('Capitão de Unidade','O Capitão da Unidade é um membro (de 10 a 15 anos) do Clube escolhido pela Unidade para animar o seu grupo a cumprir com sucesso o programa, por meio do próprio exemplo e da influência pessoal, inspirando cada membro a fazer o seu melhor.'),
 ('Secretário de Unidade','O Secretário da Unidade é o membro escolhido pelos outros membros da Unidade para desempenhar uma variedade de tarefas especiais.'),
 ('Tesoureiro de Unidade','É o responsável por recolher a mensalidade de todos os membros da Unidade e entregar para o Tesoureiro do Clube, prestando contas e fazendo o devido registro na asta da Unidade.'),
-('Capelão de unidade','Trabalha em profunda sintonia com o Capelão do Clube. Lidera os momentos espirituais da Unidade, incentiva o programa do ano bíblico, trabalhando como um pastor na Unidade.'),
+('Capelão de Unidade','Trabalha em profunda sintonia com o Capelão do Clube. Lidera os momentos espirituais da Unidade, incentiva o programa do ano bíblico, trabalhando como um pastor na Unidade.'),
 ('Diretor','O diretor deve ter, no mínimo, 18 anos de idade, ser uma pessoa madura e membro regular da Igreja Adventista do Sétimo Dia. Ele deve concluir o curso de treinamento básico de diretoria e, de preferência, ser investido em líder'),
 ('Diretor Associado','Os Diretores Associados são o braço direito e o esquerdo do diretor. Eles são responsáveis pelo cumprimento do programa do Clube e, por isso, são os coordenadores das Classes, Especialidades e Unidades.'),
 ('Secretário','O Secretário será responsável por todos os registros e relatórios do Clube, além dos que são do encargo do Tesoureiro. Um Secretário eficiente e bem organizado terá um valor incalculável para o programa do Clube de Desbravadores.'),

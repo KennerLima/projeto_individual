@@ -1,0 +1,563 @@
+.cadastro {
+    width: 100%;
+    height: 87.7vh;
+    background: linear-gradient(to right, #0f0e6c, #99cae8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.cadastro .container {
+    width: 60%;
+    height: 80%;
+
+}
+
+.cadastro .container .card-cadastro {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #d1a81c;
+}
+
+.card-cadastro h2 {
+    font-size: 1.6rem;
+    color: black;
+    padding: 0;
+    margin: 2%;
+}
+
+.cadastro .container .card-cadastro .formulario {
+    width: 95%;
+    height: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario .campo-dados-pessoais {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-h3 {
+    width: 100%;
+    height: 11%;
+}
+
+.formulario h3 {
+    margin: 0 2%;
+}
+
+.formulario .campo-linha {
+    width: 100%;
+    height: 27%;
+    margin: 1% 0;
+    display: flex;
+}
+
+.formulario .campo {
+    width: 48%;
+    height: 100%;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.formulario .campo span {
+    font-size: 15px;
+    margin: 2% 0;
+    font-weight: bold;
+    color: black;
+
+}
+
+.formulario .campo-linha .campo input {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid royalblue;
+    align-self: flex-end;
+}
+
+.formulario button {
+    margin: 18px;
+    width: 30%;
+    height: 36px;
+    background-color: #0f0e6c;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    align-self: flex-end;
+}
+
+.formulario button:hover {
+    background: #0056cc;
+}
+
+.formulario .buttons {
+    display: flex;
+    height: 72px;
+    justify-content: space-between;
+}
+
+.formulario .campo-linha .campo1 {
+    width: 26%;
+    height: 100%;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.formulario .campo-linha .campo2 {
+    width: 46%;
+    height: 100%;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.formulario .campo-linha .campo3 {
+    width: 16%;
+    height: 100%;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.formulario .campo-linha .campo4 {
+    width: 96%;
+    height: 100%;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.formulario .campo-desbravadores {
+    width: 100%;
+    height: 80%;
+    display: flex;
+}
+
+.campo-desbravadores .campo-classes {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-desbravadores .campo-classes h3 {
+    margin: 3%;
+}
+
+.campo-desbravadores .campo-classes .classes {
+    width: 96%;
+    height: 98%;
+    max-height: 98%;
+    margin: 1% 2%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.scroll-moderno::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scroll-moderno::-webkit-scrollbar-thumb {
+    background: rgb(180, 180, 180);
+
+    border-radius: 4px;
+}
+
+.scroll-moderno::-webkit-scrollbar-thumb:hover {
+    background: rgb(119, 119, 119);
+}
+
+.scroll-moderno::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.campo-desbravadores .classes .label-classe {
+    display: flex;
+    width: 100%;
+    height: 17%;
+    margin: 1% 0;
+}
+
+#classe_a {
+    font-size: 13px;
+}
+
+.classe {
+    display: flex;
+    align-items: center;
+    width: 98%;
+    height: 70%;
+    padding: 1%;
+    margin: 1%;
+    border: 2px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+
+.label-classe input[type="checkbox"] {
+    display: none;
+}
+
+.classe img {
+    width: 22px;
+    height: 22px;
+    margin: 1% 5%;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+
+.label-classe .classe span {
+    width: 70%;
+    font-size: climp(5px, 2vw, 16px);
+    text-align: start;
+}
+
+input[type="checkbox"]:checked+.amigo {
+    background-color: #00008B;
+    color: #fff;
+}
+
+input[type="checkbox"]:checked+.companheiro {
+    background-color: #FF0000;
+    color: #fff;
+}
+
+input[type="checkbox"]:checked+.pesquisador {
+    background-color: #228B22;
+    color: #fff;
+}
+
+input[type="checkbox"]:checked+.pioneiro {
+    background-color: #A9A9A9;
+    color: #fff;
+}
+
+input[type="checkbox"]:checked+.excursionista {
+    background-color: #800080;
+    color: #fff;
+}
+
+input[type="checkbox"]:checked+.guia {
+    background-color: #FFD700;
+    color: #fff;
+}
+
+input[type="checkbox"]:checked+.classe .icon {
+    transform: scale(1.2);
+    transition: 0.3s;
+    border: 1px solid white;
+}
+
+.campo-informacoes-clube {
+    width: 30%;
+    height: 98%;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-informacoes-clube h3 {
+    margin: 3%;
+}
+
+.campo-informacoes-clube .unidades {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.campo-informacoes-clube .unidades .label-unidade {
+    width: 40%;
+    height: 40%;
+    margin: 2.5% 4.1%;
+    cursor: pointer;
+}
+
+.campo-informacoes-clube .unidades .label-unidade input {
+    display: none;
+}
+
+.campo-informacoes-clube .unidades .label-unidade input:checked + .jaspe {
+    border: 2px solid #c71a62;
+    transition: 0.3s;
+}
+
+.campo-informacoes-clube .unidades .label-unidade input:checked + .onix {
+    border: 2px solid #303030;
+    transition: 0.3s;
+}
+
+.campo-informacoes-clube .unidades .label-unidade input:checked + .ametista {
+    border: 2px solid #8550a4;
+    transition: 0.3s;
+}
+
+.campo-informacoes-clube .unidades .label-unidade input:checked + .safira {
+    border: 2px solid #0e91f0;
+    transition: 0.3s;
+}
+
+input[type="checkbox"]:checked+.campo-unidade img {
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+
+.campo-informacoes-clube .unidades .label-unidade .campo-unidade {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    border-radius: 15px;
+}
+
+.campo-informacoes-clube .unidades .label-unidade .campo-unidade img {
+    width: 40px;
+    height: 40px;
+}
+
+.campo-informacoes-clube .unidades .label-unidade .campo-unidade span {
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+.campo-informacoes-clube .cargos {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-informacoes-clube .cargos select {
+    display: none;
+}
+
+.campo-desbravadores select {
+    padding: 3%;
+    font-size: 2.5vh;
+    border-radius: 15px;
+    border: 1px solid rgb(112, 112, 112);
+    outline: none;
+}
+
+.campo-desbravadores select:hover {
+    border: 1px solid black;
+}
+
+.especialidades {
+    width: 37%;
+    height: 98%;
+    margin: 1% 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.especialidades h3 {
+    margin: 0 3% 3% 3%;
+}
+
+.especialidades .card-especialidades {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow-x: auto;
+}
+
+.especialidades .card-especialidades .label-especialidades {
+    flex: 0 0 29%;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.especialidades input[type="checkbox"] {
+    display: none;
+}
+
+.especialidades .campo-especialidade {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    cursor: pointer;
+    align-items: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+.especialidades .campo-especialidade img {
+    width: 55px;
+    height: 55px;
+    padding: 1%;
+    margin-top: 6px;
+    border-radius: 15px;
+}
+
+.especialidades .campo-especialidade span {
+    font-size: 11px;
+    text-align: center;
+    padding: 1%;
+    margin-top: 10px;
+}
+
+#div_0-atividades-recreativas\/ input[type="checkbox"]:checked+.campo-especialidade {
+    border: 2px solid #003626;
+    color: #003626;
+}
+
+#div_1-artes-habilidades-manuais\/ input[type="checkbox"]:checked+.campo-especialidade {
+    border: 2px solid #00008B;
+    color: #00008B;
+}
+
+input[type="checkbox"]:checked+.campo-especialidade img {
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+
+.login {
+    width: 100%;
+    height: 87.7vh;
+    background: linear-gradient(to right, #0f0e6c, #99cae8);
+}
+
+.login .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login .container .formulario {
+    width: 60%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.lofin .container .formulario h1 {
+    padding: 1%;
+    margin: 1%;
+}
+
+.login .container .formulario .campo-login {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login .container .formulario .campo-login h1 {
+    text-align: center;
+}
+
+.login .container .formulario .campo-login .campo {
+    width: 85%;
+    height: 30%;
+    margin: 3% 7.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login .container .formulario .campo-login .campo span {
+    font-size: 3vh;
+}
+
+.login .container .formulario .campo-login .campo input {
+    width: 100%;
+    height: 3vh;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid #00008B;
+}
+
+.login .container .formulario .campo-login button {
+    align-self: center;
+}
+
+.login .container .formulario .campo-imagem {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 15px 0 0 15px;
+}
+
+.login .container .formulario .campo-imagem img {
+    width: 80%;
+    height: auto;
+    margin: 2%;
+    border-radius: 15px;
+    border: 2px solid #d1a81c;
+}
+
+.login .container .formulario .campo-imagem span {
+    font-size: 4vh;
+    color: white;
+    margin: 2%;
+}
+
+.alerta_erro {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card_erro {
+    display: none;
+    background-color: #fff;
+    color: black;
+    width: 230px;
+    position: fixed;
+    border-radius: 4px;
+    border: #ED145B 3px solid;
+    padding: 10px;
+    margin-right: 10%;
+}
+
+.card_erro #mensagem_erro {
+    font-weight: 500;
+    font-size: 20px;
+}
