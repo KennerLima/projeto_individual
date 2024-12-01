@@ -63,6 +63,8 @@ function cadastrar(req, res) {
     var categorias = req.body.listaCategoriasServer
     var classes = req.body.listaClassesServer;
     var especialidades = req.body.listaEspecialidadesServer;
+    var unidade = req.body.unidadeServer;
+    var cargo = req.body.cargoServer;
     console.log(classes, 'Especialidades: ' + especialidades)
 
     // Faça as validações dos valores
@@ -75,7 +77,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, dtNasc, telefone, email, senha, cep, rua, numero, complemento, bairro, cidade, estado, classes, categorias, especialidades)
+        usuarioModel.cadastrar(nome, dtNasc, telefone, email, senha, cep, rua, numero, complemento, bairro, cidade, estado, classes, categorias, especialidades, unidade, cargo)
             .then(
                 function (resultado) {
                     res.json(resultado);

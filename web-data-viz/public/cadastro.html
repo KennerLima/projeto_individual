@@ -60,11 +60,6 @@
 
   <!-- cadastro inicio -->
   <div class="cadastro">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
     <div class="container">
       <div class="card-cadastro">
         <h2>Bem-vindo!</h2>
@@ -282,6 +277,7 @@
               <div class="cargos">
                 <h3>Cargo</h3>
                 <select id="select_cargo_diretoria" name="select_cargo">
+                  <option value="#" selected disabled>Escolha uma opção</option>
                   <option value="Conselheiro">Conselheiro</option>
                   <option value="Conselheiro Associado">Conselheiro Associado</option>
                   <option value="Diretor">Diretor</option>
@@ -291,6 +287,7 @@
                   <option value="Instrutor">Instrutor</option>
                 </select>
                 <select id="select_cargo_desbravador" name="select_cargo">
+                  <option value="#" selected disabled>Escolha uma opção</option>
                   <option value="Capitão de Unidade">Capitão de Unidade</option>
                   <option value="Secretário de Unidade">Secretário de Unidade</option>
                   <option value="Tesoureiro de Unidade">Tesoureiro de Unidade</option>
@@ -301,7 +298,7 @@
             <div class="especialidades" id="div_especialidades">
               <h3>Especialidades</h3>
               <select id="select_categoria" onchange="verificarOpcaoSelecionada(select_categoria)">
-                <option value="nada" class="nada" selected>Escolha uma opção</option>
+                <option value="#" selected disabled>Escolha uma opção</option>
                 <option value="0-atividades-recreativas/">Atividades Recreativas</option>
                 <option value="1-artes-habilidades-manuais/">Artes Habilidades Manuais</option>
               </select>
@@ -313,6 +310,11 @@
           </div>
         </div>
         <!-- fim formulario desbravadores -->
+      </div>
+    </div>
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
       </div>
     </div>
   </div>
@@ -495,9 +497,15 @@
         console.log("Unidade: " + unidade)
       }
     }
+    
+    var selectCargoDiretoria = document.getElementById('select_cargo_diretoria')
+    var selectCargoDesbravador = document.getElementById('select_cargo_desbravador')
+    var cargo = selectCargoDiretoria.value
 
-    var selectCargo = document.getElementsByName("select_cargo")
-    var cargo = selectCargo.value
+    if (selectCargoDiretoria.style.display == 'none') {
+      cargo = selectCargoDesbravador.value
+    }
+    console.log(cargo)
 
     //inserção de dados na lista de especialidades selecionadas
     inserirEspecialidadesSelecionadasLista()
@@ -523,21 +531,66 @@
         "Preencha todos os campos";
 
       // finalizarAguardar();
+      setInterval(sumirMensagem, 4000);
       return false;
+
+    } else if (idade < 10) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Você não tem idade suficiente para se cadastrar"
+      setInterval(sumirMensagem, 4000);
+    
     } else if (telefoneVar.length != 11) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Número de telefone inválido"
+      setInterval(sumirMensagem, 4000);
+      return false
 
     } else if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Email inválido"
+      setInterval(sumirMensagem, 4000);
+      return false
 
     } else if (verificarSenhaInvalida(senhaVar)) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Senha inválida"
-    }
-    else {
-      setInterval(sumirMensagem, 5000);
+      setInterval(sumirMensagem, 4000);
+      return false
+
+    } else if (confirmacaoSenhaVar != senhaVar) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Confirmação da senha está diferente da senha"
+      setInterval(sumirMensagem, 4000);
+      return false
+
+    } else if (estadoVar.length > 2) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Estado inválido" 
+      setInterval(sumirMensagem, 4000);
+      return false
+
+    } else if (verificarClassesInvalidas(listaClassesSelecionadas)) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Quantidade de classes inválida" 
+      setInterval(sumirMensagem, 4000);
+      return false
+
+    } else if (verificarEspecialidadesInvalidas(listaEspecialidadesSelecionadas)) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Quantidade de especialidades inválida" 
+      setInterval(sumirMensagem, 4000);
+      return false
+
+    } else if (unidade = "") {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Selecione uma unidade" 
+      setInterval(sumirMensagem, 4000);
+      return false
+    } else if (cargo == '#') {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Selecione um cargo" 
+      setInterval(sumirMensagem, 4000);
+      return false
     }
 
     // Enviando o valor da nova input
@@ -563,7 +616,8 @@
         senhaServer: senhaVar,
         listaClassesServer: listaClassesSelecionadas,
         listaEspecialidadesServer: listaEspecialidadesSelecionadas,
-        unidadeServer: unidade
+        unidadeServer: unidade,
+        cargoServer: cargo
       }),
     })
       .then(function (resposta) {
@@ -598,10 +652,41 @@
     const numeros = /[0-9]/
     const caracteresEspeciais = /[!@#$%^&*(),.?":{}|<>]/
 
-    if (senha.searce(maisculas) == -1 || senha.searce(numeros) == -1 || senha.searce(caracteresEspeciais)) {
+    if (senha.search(maisculas) == -1 || senha.search(numeros) == -1 || senha.search(caracteresEspeciais) == 1) {
       return true
     }
+    return false
+  }
 
+  function verificarClassesInvalidas(classes) {
+    if (idade == 10 && classes.length > 2) {
+      return true
+    } else if (idade == 11 && classes.length > 4) {
+      return true 
+    } else if (idade == 12 && classes.length > 6) {
+      return true 
+    } else if (idade == 13 && classes.length > 8) {
+      return true
+    } else if (idade == 14 && classes.length > 10) {
+      return true
+    }
+    return false
+  }
+
+  function verificarEspecialidadesInvalidas(especialidades) {
+    if (idade == 10 && especialidades.length > 7) {
+      return true
+    } else if (idade == 11 && especialidades.length > 14) {
+      return true 
+    } else if (idade == 12 && especialidades.length > 21) {
+      return true 
+    } else if (idade == 13 && especialidades.length > 28) {
+      return true
+    } else if (idade == 14 && especialidades.length > 35) {
+      return true
+    } else if (idade == 15 && especialidades.length > 42) {
+      return true
+    }
     return false
   }
 

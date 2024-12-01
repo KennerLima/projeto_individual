@@ -10,7 +10,7 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, dtNasc, telefone, email, senha, cep, rua, numero, complemento, bairro, cidade, estado, listaClasses, listaCategorias, listaEspecialidades) {
+function cadastrar(nome, dtNasc, telefone, email, senha, cep, rua, numero, complemento, bairro, cidade, estado, listaClasses, listaEspecialidades, unidade, cargo) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -44,6 +44,12 @@ function cadastrar(nome, dtNasc, telefone, email, senha, cep, rua, numero, compl
                 `
         }
     }
+
+    var instrucaoSqlUnidadeMembro = `
+    INSERT INTO unidadeMembro (fkMembro, fkUnidade, conselheiro, conselheiroAssociado) VALUES
+    (   (select idMembro from membro order by idMembro desc limit 1), 
+        (select idUnidade from unidade where nome = "${unidade}"),
+        (select idMembro from membro where ))`
     console.log(listaEspecialidades)
     console.log("Executando a instrução SQL: \n" + instrucaoSqlMembro);
     database.executar(instrucaoSqlMembro)
