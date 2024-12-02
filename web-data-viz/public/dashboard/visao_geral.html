@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/visao-geral.css">
+</head>
+
+<body>
+    <div class="visao-geral">
+        <div class="menu">
+            <h1>Topázio</h1>
+            <span>Olá, <span id="b_usuario"></span></span>
+            <ul class="opt-menu">
+                <li><a href="visao_geral.html">Visão Geral</a></li>
+                <li><a href="provas.html">Prova</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </div>
+        <div class="informacoes-usuario">
+            <div class="dados-pessoais">
+                <div class="campo-linha">
+
+                </div>
+            </div>
+            <div class="especialidades" id="div_especialidades">
+
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../js/script.js"></script>
+<script src="../js/sessao.js"></script>
+
+</html>
+
+<script>
+    const nomeUsuario = sessionStorage.NOME_USUARIO
+    const enderecoUsuario = sessionStorage.ENDERECO_USUARIO
+    const classesUsuario = JSON.parse(sessionStorage.CLASSES_USUARIO)
+    const especialidadesUsuario = JSON.parse(sessionStorage.ESP_USUARIO)
+    console.log(especialidadesUsuario[0].nome)
+
+    function criarEspecialidades() {
+
+        for (var categoriaAtual = 0; categoriaAtual < categorias.length; categoriaAtual++) {
+            var categoria = categorias[categoriaAtual]
+            var div = "div_" + categoria.caminho
+            var html = `<div id="${div}" class="card-especialidades scroll-moderno">`
+
+            for (var espAtual = 0; espAtual < categoria.especialidades.length; espAtual++) {
+                var especialidade = categoria.especialidades[espAtual]
+                html += `
+                <div class="campo-especialidade" id="div_${especialidade.caminho}" onclick="mostrarInformacoes(div_${especialidade.caminho})">
+                <img src="../assets/icon/especialidades/${categoria.caminho + especialidade.caminho}.png">
+                <span> ${especialidade.nome} </span>
+                </div>
+                `
+            }
+            html += `</div>`
+            div_especialidades.innerHTML += html
+            var divCategoria = document.getElementById("div_" + categoria.caminho)
+            divCategoria.style.display = 'flex'
+        }
+    }
+    criarEspecialidades()
+</script>

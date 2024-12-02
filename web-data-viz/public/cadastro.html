@@ -153,7 +153,7 @@
         <!-- inicio formulario desbravadores -->
         <div class="formulario" id="formulario_desbravadores">
           <div class="campo-desbravadores">
-             <div class="campo-classes">
+            <div class="campo-classes">
               <h3>Classes</h3>
               <div class="classes scroll-moderno">
                 <label class="label-classe">
@@ -461,12 +461,22 @@
     }
   }
 
+  function inicializarArray() {
+  if (!localStorage.getItem('listaIds')) {
+    const listaIds = [0]
+    localStorage.setItem('listaIds', JSON.stringify(listaIds));
+  }
+}
+
+inicializarArray();
+
   function cadastrar() {
     // aguardar();
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-
+    let listaIdsRecuperada = JSON.parse(localStorage.getItem('listaIds'));
     // variaveis da tabela membro
+    var idMembro = listaIdsRecuperada[listaIdsRecuperada.length - 1] + 1
     var nomeVar = nome_input.value;
     var dtNascVar = dtNasc_input.value;
     var telefoneVar = telefone_input.value;
@@ -485,19 +495,20 @@
     var estadoVar = estado_input.value;
     // console.log('CEP: ' + cepVar, 'Rua: ' + ruaVar, 'Numero: ' + numeroVar, 'Complemento: ' + complementoVar, 'Bairro: ' + bairroVar, 'Cidade: ' + cidadeVar, 'Estado: ' + estadoVar)
 
+    listaClassesSelecionadas = []
     // inserção de dados na lista de classes selecionadas
     inserirClassesSelecionadasLista()
 
     var checkUnidade = document.getElementsByName("check_unidade")
-    var unidade = ''
+    var unidadeVar = ''
 
     for (var unidadeI = 0; unidadeI < checkUnidade.length; unidadeI += 1) {
       if (checkUnidade[unidadeI].checked) {
-        unidade = checkUnidade[unidadeI].value
-        console.log("Unidade: " + unidade)
+        unidadeVar = checkUnidade[unidadeI].value
+        console.log("Unidade: " + unidadeVar)
       }
     }
-    
+
     var selectCargoDiretoria = document.getElementById('select_cargo_diretoria')
     var selectCargoDesbravador = document.getElementById('select_cargo_desbravador')
     var cargo = selectCargoDiretoria.value
@@ -507,6 +518,7 @@
     }
     console.log(cargo)
 
+    listaEspecialidadesSelecionadas = []
     //inserção de dados na lista de especialidades selecionadas
     inserirEspecialidadesSelecionadasLista()
 
@@ -514,7 +526,7 @@
     if (
       nomeVar == "" ||
       dtNascVar == "" ||
-      telefoneVar == "" || 
+      telefoneVar == "" ||
       emailVar == "" ||
       cepVar == "" ||
       ruaVar == "" ||
@@ -538,7 +550,7 @@
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Você não tem idade suficiente para se cadastrar"
       setInterval(sumirMensagem, 4000);
-    
+
     } else if (telefoneVar.length != 11) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Número de telefone inválido"
@@ -565,30 +577,30 @@
 
     } else if (estadoVar.length > 2) {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Estado inválido" 
+      mensagem_erro.innerHTML = "Estado inválido"
       setInterval(sumirMensagem, 4000);
       return false
 
     } else if (verificarClassesInvalidas(listaClassesSelecionadas)) {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Quantidade de classes inválida" 
+      mensagem_erro.innerHTML = "Quantidade de classes inválida"
       setInterval(sumirMensagem, 4000);
       return false
 
     } else if (verificarEspecialidadesInvalidas(listaEspecialidadesSelecionadas)) {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Quantidade de especialidades inválida" 
+      mensagem_erro.innerHTML = "Quantidade de especialidades inválida"
       setInterval(sumirMensagem, 4000);
       return false
 
-    } else if (unidade = "") {
+    } else if (unidadeVar == "") {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Selecione uma unidade" 
+      mensagem_erro.innerHTML = "Selecione uma unidade"
       setInterval(sumirMensagem, 4000);
       return false
     } else if (cargo == '#') {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Selecione um cargo" 
+      mensagem_erro.innerHTML = "Selecione um cargo"
       setInterval(sumirMensagem, 4000);
       return false
     }
@@ -602,6 +614,7 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
+        idMembroServer: idMembro,
         nomeServer: nomeVar,
         dtNascServer: dtNascVar,
         telefoneServer: telefoneVar,
@@ -616,7 +629,7 @@
         senhaServer: senhaVar,
         listaClassesServer: listaClassesSelecionadas,
         listaEspecialidadesServer: listaEspecialidadesSelecionadas,
-        unidadeServer: unidade,
+        unidadeServer: unidadeVar,
         cargoServer: cargo
       }),
     })
@@ -624,6 +637,10 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
+
+          listaIdsRecuperada.push(idMembro);
+          localStorage.setItem('listaIds', JSON.stringify(listaIdsRecuperada));
+
           cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
@@ -662,9 +679,9 @@
     if (idade == 10 && classes.length > 2) {
       return true
     } else if (idade == 11 && classes.length > 4) {
-      return true 
+      return true
     } else if (idade == 12 && classes.length > 6) {
-      return true 
+      return true
     } else if (idade == 13 && classes.length > 8) {
       return true
     } else if (idade == 14 && classes.length > 10) {
@@ -677,9 +694,9 @@
     if (idade == 10 && especialidades.length > 7) {
       return true
     } else if (idade == 11 && especialidades.length > 14) {
-      return true 
+      return true
     } else if (idade == 12 && especialidades.length > 21) {
-      return true 
+      return true
     } else if (idade == 13 && especialidades.length > 28) {
       return true
     } else if (idade == 14 && especialidades.length > 35) {

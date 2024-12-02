@@ -19,16 +19,34 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
+                        const membro = resultadoAutenticar
 
-                        res.json({
-                            id: resultadoAutenticar[0].id,
-                            nome: resultadoAutenticar[0].nome,
-                            dtNasc: resultadoAutenticar[0].dtNasc,
-                            telefone: resultadoAutenticar[0].telefone,
-                            email: resultadoAutenticar[0].email,
-                            senha: resultadoAutenticar[0].senha
-                        });
-                        
+                        usuarioModel.buscarEndereco(membro[0].idMembro)
+                            .then((resultadoEndereco) => {
+                                if (resultadoEndereco.length == 1) {
+
+                                    usuarioModel.buscarClasses(membro[0].idMembro)
+                                        .then((resultadoClasses) => {
+
+                                            usuarioModel.buscarEspecialidades(membro[0].idMembro)
+                                                .then((resultadoEspecialidades) => {
+                                                    res.json({
+                                                        id: membro[0].idMembro,
+                                                        nome: membro[0].nome,
+                                                        dtNasc: membro[0].dtNasc,
+                                                        telefone: membro[0].telefone,
+                                                        email: membro[0].email,
+                                                        senha: membro[0].senha,
+                                                        endereco: resultadoEndereco[0].endereco,
+                                                        classes: JSON.stringify(resultadoClasses),
+                                                        especialidades: JSON.stringify(resultadoEspecialidades)
+                                                    });
+                                                })
+                                        })
+                                } else {
+                                    res.status(204).json({ endereco: [] });
+                                }
+                            })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -60,12 +78,12 @@ function cadastrar(req, res) {
     var bairro = req.body.bairroServer;
     var cidade = req.body.cidadeServer;
     var estado = req.body.estadoServer;
-    var categorias = req.body.listaCategoriasServer
     var classes = req.body.listaClassesServer;
     var especialidades = req.body.listaEspecialidadesServer;
     var unidade = req.body.unidadeServer;
     var cargo = req.body.cargoServer;
-    console.log(classes, 'Especialidades: ' + especialidades)
+
+    console.log('Unidade: ' + unidade)
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -77,11 +95,12 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, dtNasc, telefone, email, senha, cep, rua, numero, complemento, bairro, cidade, estado, classes, categorias, especialidades, unidade, cargo)
+        usuarioModel.cadastrar(nome, dtNasc, telefone, email, senha, cep, rua, numero, complemento, bairro, cidade, estado, classes, especialidades, unidade, cargo)
             .then(
                 function (resultado) {
                     res.json(resultado);
                 }
+
             ).catch(
                 function (erro) {
                     console.log(erro);
