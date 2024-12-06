@@ -1,40 +1,257 @@
+
 body {
     margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    box-sizing: border-box;
 }
+
 .visao-geral {
-    width: 100%;
-    height: 100vh;
     display: flex;
+    flex-direction: row;
+    height: 100vh;
+    min-height: 100%;
 }
 
 .visao-geral .menu {
     width: 15%;
-    height: 100%;
+    background: linear-gradient(to bottom,  #0f0e6c,  #000030);
+    padding: 20px;
+    color: #fff;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    border: 2px solid #000;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.visao-geral .menu h1 {
+    font-size: 24px;
+    margin: 1% 2% 20% 2%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.visao-geral .menu .opt-menu {
+    width: 70%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.visao-geral .menu .opt-menu a {
+    width: 80%;
+    height: 15%;
+    background-color: rgb(4, 0, 63);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid white;
+    text-decoration: none;
+    color: white;
+}
+
+.visao-geral .menu .opt-menu span {
+    width: 80%;
+    height: 15%;
+    background-color: rgb(4, 0, 63);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid white;
+    text-decoration: none;
+    color: white; 
+}
+
+.visao-geral .menu span {
+    width: 50%;
+    border-bottom: 1px solid white;
+    color: white; 
+    padding: 1%;
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.visao-geral .menu span span{
+    border :0;
 }
 
 .visao-geral .informacoes-usuario {
-    width: 85%;
-    height: 100%;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    border: 2px solid #0004ff;
 }
 
-.visao-geral .informacoes-usuario .dados-pessoais {
-    width: 100%;
-    height: 40%;
-    box-sizing: border-box;
-    border: 2px solid #b3ff00;
+.visao-geral .informacoes-usuario h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 10px 0;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
 }
 
-.visao-geral .informacoes-usuario .especialidades {
+.dados-pessoais {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.campo-linha {
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: space-between;
+}
+
+.campo-linha div {
+    width: 48%;
+}
+.campo-linha .endereco {
     width: 100%;
-    height: 60%;
-    box-sizing: border-box;
-    border: 2px solid #ff0000;
+}
+.campo-linha span {
+    font-weight: bold;
+}
+
+.classes {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    
+}
+
+.tipo-classe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-evenly;
+}
+
+.classe {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 26%;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.classe:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.classe img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.classe span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.container-especialidades {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-especialidades {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.campo-categoria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.campo-especialidade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 15%;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.campo-especialidade:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.campo-especialidade img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.campo-especialidade span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+#div_0-atividades-recreativas\/ .tem-especialidade {
+    border: 1px solid #003626;
+    color: #003626;
+}
+
+#div_1-artes-habilidades-manuais\/ .tem-especialidade {
+    border: 1px solid #00008B;
+    color: #00008B;
+}
+/* 
+
+.scroll-moderno {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+}
+
+.scroll-moderno::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.scroll-moderno::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.scroll-moderno::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+} */
+
+.destaque {
+    border: 1px solid #333;
 }

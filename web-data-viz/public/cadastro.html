@@ -355,6 +355,8 @@
     return
   }
 
+  sessionStorage.IDADE = idade
+
   setTimeout(() => {
     criarEspecialidades()
   }, 1000)
@@ -430,7 +432,7 @@
     for (var posicaoAtual = 0; posicaoAtual < listaIdInputClasse.length; posicaoAtual += 1) {
 
       if (listaIdInputClasse[posicaoAtual].checked) {
-        listaClassesSelecionadas.push(posicaoAtual + 1)
+        listaClassesSelecionadas.push(posicaoAtual)
       }
     }
     console.log('Lista de Classes Selecionadas: ' + listaClassesSelecionadas)
@@ -648,7 +650,7 @@ inicializarArray();
 
           setTimeout(() => {
             window.location = "login.html";
-          }, 500);
+          }, 1000);
 
           limparFormulario();
           finalizarAguardar();

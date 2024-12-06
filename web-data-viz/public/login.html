@@ -134,10 +134,17 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.DATA_NASC_USUARIO = json.dtNasc;
+                    sessionStorage.TELEFONE_USUARIO = json.telefone
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.ENDERECO_USUARIO = json.endereco
-                    sessionStorage.CLASSES_USUARIO = json.classes
-                    sessionStorage.ESP_USUARIO = json.especialidades
+                    sessionStorage.ENDERECO_USUARIO = json.endereco;
+                    sessionStorage.CLASSES_USUARIO = json.classes;
+                    sessionStorage.ESP_USUARIO = json.especialidades;
+                    sessionStorage.CARGO_USUARIO = json.cargos;
+                    sessionStorage.UNIDADE_USUARIO = json.unidade;
+                    sessionStorage.QTD_ESPECIALIDADES = json.qtdEspecialidades;
+                    sessionStorage.INTERVALO = json.intervalo;
+                    sessionStorage.SEQUENCIA = json.sequencia;
 
                     setTimeout(function () {
                         window.location = "dashboard/visao_geral.html";

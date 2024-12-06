@@ -1,16 +1,13 @@
 var database = require("../database/config");
 
-
-
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha) 
     
     var instrucaoSqlMembro = `
-        SELECT idMembro, nome, dtNasc, telefone, email, senha FROM membro WHERE email = '${email}' AND senha = '${senha}';
+        SELECT idMembro, nome, date(dtNasc) as dtNasc, telefone, email, senha FROM membro WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSqlMembro);
     return database.executar(instrucaoSqlMembro);
-
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
@@ -162,10 +159,104 @@ function buscarEspecialidades(idMembro) {
     return database.executar(instrucaoSqlEspecialidades)
 }
 
+function buscarUnidade(idMembro) {
+    var instrucaoSqlUnidade = `
+    select unidade.nome from unidade 
+        join unidadeMembro as UMembro
+            on unidade.idUnidade = Umembro.fkUnidade
+        join membro
+            on membro.idMembro = UMembro.fkMembro
+        where membro.idMembro = ${idMembro}`
+
+    return database.executar(instrucaoSqlUnidade)
+}
+
+function buscarCargo(idMembro) {
+    instrucaoSqlCargo = `
+    select cargo.nome from cargo
+        join cargoMembro as CMembro
+            on cargo.Idcargo = CMembro.fkCargo
+        join membro
+            on membro.idMembro = CMembro.fkMembro
+        where membro.idMembro = ${idMembro}`
+
+    return database.executar(instrucaoSqlCargo)
+}
+
+function buscarQtdEspecialidades(idMembro) {
+    var instrucaoSqlQtdEspecialidade = `select count(idEspecialidade) as qtdEspecialidades, month(dtRealizacao) as mes from membro 
+    join EspecialidadeMembro as espMembro
+        on membro.idMembro = espMembro.fkMembro
+    join especialidade as esp
+        on esp.idEspecialidade = fkEspecialidade 
+    where idMembro = ${idMembro} and year(dtRealizacao) = 2024 group by month(dtRealizacao) order by mes;`
+
+    return database.executar(instrucaoSqlQtdEspecialidade)
+}
+
+function buscarIntervalo(idMembro) {
+    var instrucaoSqlIntervalo = `
+                WITH Diferencas AS (
+                    SELECT idMembro, DATEDIFF( dtRealizacao, LAG(dtRealizacao) OVER (PARTITION BY idMembro ORDER BY dtRealizacao)) AS diferencaDias
+                    FROM 
+                    membro
+                    join EspecialidadeMembro as espMem
+                    on membro.idMembro = espMem.fkMembro
+                )
+                SELECT 
+                    idMembro,
+                    AVG(diferencaDias) AS intervaloMedio
+                FROM 
+                    Diferencas
+                WHERE 
+                    diferencaDias IS NOT NULL
+                AND 
+                    idMembro = ${idMembro}
+                GROUP BY 
+                    idMembro;`
+
+    return database.executar(instrucaoSqlIntervalo)
+}
+
+function buscarSequencia(idMembro) {
+    var instrucaoSqlSequencia = `
+        SELECT 
+            membro.idMembro,
+            especialidade,
+            dtRealizacao,
+            diferencas.diferencaDias
+        FROM 
+            (SELECT 
+                espMem.fkMembro AS idMembro,
+                espMem.dtRealizacao as dtRealizacao,
+                e.nome as especialidade,
+                DATEDIFF(espMem.dtRealizacao, LAG(espMem.dtRealizacao) OVER (PARTITION BY espMem.fkMembro ORDER BY espMem.dtRealizacao)) AS diferencaDias
+            FROM 
+                EspecialidadeMembro AS espMem
+            JOIN 
+                especialidade AS e ON espMem.fkEspecialidade = e.idEspecialidade
+            ) AS diferencas
+        JOIN 
+            membro ON membro.idMembro = diferencas.idMembro
+        WHERE 
+            diferencas.idMembro = 1
+            AND diferencas.diferencaDias < 30
+        ORDER BY 
+            diferencas.dtRealizacao;`
+
+    database.executar(instrucaoSqlSequencia)
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     buscarEndereco,
     buscarClasses,
-    buscarEspecialidades
+    buscarEspecialidades,
+    buscarUnidade,
+    buscarCargo,
+    buscarQtdEspecialidades,
+    buscarIntervalo,
+    buscarSequencia
 };

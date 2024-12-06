@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/prova.css">
+</head>
+
+<body>
+    <div class="prova">
+        <div class="menu">
+            <h1>Topázio</h1>
+            <span>Olá, <span id="b_usuario"></span></span>
+            <div class="opt-menu">
+            <a href="visao_geral.html">Visão Geral</a>
+            <a href="provas.html">Prova</a>
+            <a href="dashboard.html">Dashboard</a>
+            <span onclick="limparSessao()">Sair</span>
+            </div>
+        </div>
+        <div class="conteudo">
+            <div class="prova-container scroll-moderno" id="prova_container">
+                <div class="informacoes-membro">
+                    <div>
+                        <span>Nome:</span>
+                        <span id="span_nome">usuario</span>
+                    </div>
+                    <div class="data">
+                        <span>Data:</span>
+                        <input type="date">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/script.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script>
+        var especialidade = JSON.parse(sessionStorage.ESP_PROVA)
+        var categoria = JSON.parse(sessionStorage.CAT_PROVA)
+        var prova = especialidade.prova
+
+        var indexNome = sessionStorage.NOME_USUARIO.indexOf(" ")
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO.slice(0, indexNome)
+        span_nome.innerHTML = sessionStorage.NOME_USUARIO
+
+        function criarProva() {
+            const container = document.getElementById("prova-container");
+            const questoesProva = prova;
+
+            var html = `
+                    <div class="titulo">
+                        <div class="nome-esp">
+                            <h2>Especialidade ${especialidade.nome}</h2>
+                            <h3>Categoria ${categoria[0]}</h3>
+                        </div>
+                        <img src="../assets/icon/especialidades/${categoria[1] + especialidade.caminho}.png">
+                    </div>`
+            for (var i = 0; i < questoesProva.length; i++) {
+                const questao = questoesProva[i];
+
+                if (questao.subquestoes == undefined) {
+                    if (questao.tipo == "teorico") {
+                        html += `
+                            <div class="questao">
+                               <span>${i + 1}. ${questao.nome}</span>
+                               <input type="text" placeholder="Escreva sua resposta aqui...">
+                            </div>
+                           `
+                    } else {
+                        html += `
+                            <div class="questao">
+                                <span>${i + 1}. ${questao.nome}</span>
+                                <input type="file" accept="image">
+                            </div>
+                            `
+                    }
+                } else {
+                    const listaAlfabeto = ["a", "b", "c", "d", "e","f", "g","h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"]
+                    var subquestoes = questao.subquestoes
+                    html += `
+                        <div class="questao">
+                           <span>${i + 1}. ${questao.nome}</span>
+                           <p>`
+
+                    for (var j = 0; j < subquestoes.length; j++) {
+                        if (questao.tipo == "teorico") {
+                            html += `
+                            <div class="subquestao">
+                                <span>${listaAlfabeto[j]}. ${subquestoes[j]}</span>
+                                <input type="text" placeholder="Escreva sua resposta aqui...">
+                            </div>`
+                        } else {
+                            html += `
+                            <div class="subquestao">
+                                <span>${j + 1}. ${subquestoes[j]}</span>
+                                <input type="file" accept="image">
+                            </div>`
+                        }
+                    }
+                }
+                html += `</div>`
+
+            }
+            prova_container.innerHTML += html
+        }
+
+        // Inicializar a criação da prova
+        criarProva();
+    </script>
+</body>
+
+</html>

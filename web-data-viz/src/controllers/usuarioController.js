@@ -1,3 +1,4 @@
+const { json } = require("express");
 var usuarioModel = require("../models/usuarioModel");
 // var aquarioModel = require("../models/aquarioModel");
 
@@ -30,17 +31,41 @@ function autenticar(req, res) {
 
                                             usuarioModel.buscarEspecialidades(membro[0].idMembro)
                                                 .then((resultadoEspecialidades) => {
-                                                    res.json({
-                                                        id: membro[0].idMembro,
-                                                        nome: membro[0].nome,
-                                                        dtNasc: membro[0].dtNasc,
-                                                        telefone: membro[0].telefone,
-                                                        email: membro[0].email,
-                                                        senha: membro[0].senha,
-                                                        endereco: resultadoEndereco[0].endereco,
-                                                        classes: JSON.stringify(resultadoClasses),
-                                                        especialidades: JSON.stringify(resultadoEspecialidades)
-                                                    });
+
+                                                    usuarioModel.buscarCargo(membro[0].idMembro)
+                                                        .then((resultadoCargo) => {
+
+                                                            usuarioModel.buscarUnidade(membro[0].idMembro)
+                                                                .then((resultadoUnidade) => {
+                                                                    usuarioModel.buscarQtdEspecialidades(membro[0].idMembro)
+                                                                        .then((resultadoQtdEspecialidades) => {
+                                                                            usuarioModel.buscarIntervalo(membro[0].idMembro)
+                                                                                .then((resultadoIntervalo) => {
+                                                                                    usuarioModel.buscarSequencia(membro[0].idMembro)
+                                                                                        .then((resultadoSequencia) => {
+
+                                                                                            res.json({
+                                                                                                id: membro[0].idMembro,
+                                                                                                nome: membro[0].nome,
+                                                                                                dtNasc: membro[0].dtNasc,
+                                                                                                telefone: membro[0].telefone,
+                                                                                                email: membro[0].email,
+                                                                                                senha: membro[0].senha,
+                                                                                                endereco: resultadoEndereco[0].endereco,
+                                                                                                classes: JSON.stringify(resultadoClasses),
+                                                                                                especialidades: JSON.stringify(resultadoEspecialidades),
+                                                                                                cargos: JSON.stringify(resultadoCargo),
+                                                                                                unidade: JSON.stringify(resultadoUnidade),
+                                                                                                qtdEspecialidades: JSON.stringify(resultadoQtdEspecialidades),
+                                                                                                intervalo: JSON.stringify(resultadoIntervalo),
+                                                                                                sequencia: JSON.stringify(resultadoSequencia)
+                                                                                            })
+                                                                                        })
+                                                                                })  
+                                                                        })
+                                                                    
+                                                                })
+                                                        })
                                                 })
                                         })
                                 } else {

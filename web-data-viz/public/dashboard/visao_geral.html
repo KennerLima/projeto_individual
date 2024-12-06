@@ -8,28 +8,64 @@
     <link rel="stylesheet" href="../css/visao-geral.css">
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div class="visao-geral">
         <div class="menu">
             <h1>Topázio</h1>
             <span>Olá, <span id="b_usuario"></span></span>
-            <ul class="opt-menu">
-                <li><a href="visao_geral.html">Visão Geral</a></li>
-                <li><a href="provas.html">Prova</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-            </ul>
+            <div class="opt-menu">
+            <a href="visao_geral.html">Visão Geral</a>
+            <a href="provas.html">Prova</a>
+            <a href="dashboard2.html">Dashboard</a>
+            <span onclick="limparSessao()">Sair</span>
+            </div>
         </div>
         <div class="informacoes-usuario">
             <div class="dados-pessoais">
+                <h3>Dados Pessoais</h3>
                 <div class="campo-linha">
-
+                    <div class="nome">
+                        <span>Nome:</span>
+                        <span id="span_nome" class="dado"></span>
+                    </div>
+                    <div class="idade">
+                        <span>Data de Nascimento:</span>
+                        <span id="span_dtNasc" class="dado"></span>
+                    </div>
+                </div>
+                <div class="campo-linha">
+                    <div class="email">
+                        <span>Email:</span>
+                        <span id="span_email"></span>
+                    </div>
+                    <div class="telefone">
+                        <span>Telefone:</span>
+                        <span id="span_telefone"></span>
+                    </div>
+                </div>
+                <div class="campo-linha">
+                    <div class="endereco">
+                        <span>Endereço:</span>
+                        <span id="span_endereco" class="dado"></span>
+                    </div>
                 </div>
             </div>
-            <div class="especialidades" id="div_especialidades">
+            <div class="classes">
+                <h3>Classes Regulares</h3>
+                <div class="tipo-classe" id="div_regulares">
 
+
+                </div>
+                <h3>Classes Avançadas</h3>
+                <div class="tipo-classe" id="div_avancadas">
+                </div>
+            </div>
+            <div class="container-especialidades">
+                <h3>Especialidades</h3>
+                <div class="especialidades" id="div_especialidades">
+                </div>
             </div>
         </div>
-
     </div>
 </body>
 <script src="../js/script.js"></script>
@@ -38,33 +74,155 @@
 </html>
 
 <script>
-    const nomeUsuario = sessionStorage.NOME_USUARIO
-    const enderecoUsuario = sessionStorage.ENDERECO_USUARIO
     const classesUsuario = JSON.parse(sessionStorage.CLASSES_USUARIO)
     const especialidadesUsuario = JSON.parse(sessionStorage.ESP_USUARIO)
-    console.log(especialidadesUsuario[0].nome)
+    const listaClasses = [
+        {
+            "nome": "Amigo",
+            "caminho": "../assets/icon/classes/icon-amigo.png"
+        }, {
+            "nome": "Amigo da Natureza",
+            "caminho": "../assets/icon/classes/icon-amigo.png"
+        }, {
+            "nome": "Companheiro",
+            "caminho": "../assets/icon/classes/icon-companheiro.png"
+        }, {
+            "nome": "Comapanheiro de Excursionismo",
+            "caminho": "../assets/icon/classes/icon-companheiro.png"
+        }, {
+            "nome": "Pesquisador",
+            "caminho": "../assets/icon/classes/icon-pesquisador.png"
+        }, {
+            "nome": "Pesquisador de Campo e Bosque",
+            "caminho": "../assets/icon/classes/icon-pesquisador.png"
+        }, {
+            "nome": "Pioneiro",
+            "caminho": "../assets/icon/classes/icon-pioneiro.png"
+        }, {
+            "nome": "Pioneiro de Novas EStradas",
+            "caminho": "../assets/icon/classes/icon-pioneiro.png"
+        }, {
+            "nome": "Excursionista",
+            "caminho": "../assets/icon/classes/icon-excursionista.png"
+        }, {
+            "nome": "Excursionista na Mata",
+            "caminho": "../assets/icon/classes/icon-excursionista.png"
+        }, {
+            "nome": "Guia",
+            "caminho": "../assets/icon/classes/icon-guia.png"
+        }, {
+            "nome": "Guia de Exploração",
+            "caminho": "../assets/icon/classes/icon-guia.png"
+        }
+    ]
+
+    span_nome.innerHTML = sessionStorage.NOME_USUARIO
+    span_dtNasc.innerHTML = sessionStorage.DATA_NASC_USUARIO.slice(0, 10)
+    span_endereco.innerHTML = sessionStorage.ENDERECO_USUARIO
+    span_telefone.innerHTML = sessionStorage.TELEFONE_USUARIO
+    span_email.innerHTML = sessionStorage.EMAIL_USUARIO
+
+    function criarClasses() {
+        var html = ''
+        for (var i = 0; i < listaClasses.length; i += 1) {
+            var classe = listaClasses[i]
+            var temClasse = false
+
+            for (var j = 0; j < classesUsuario.length; j += 1) {
+                var usuarioClasse = classesUsuario[j]
+
+                if (usuarioClasse.nome == classe.nome) {
+                    temClasse = true
+                    if (i % 2 == 0) {
+                        div_regulares.innerHTML += `<div class="classe destaque">
+                        <img class="icon" src="${classe.caminho}">
+                        <span>${classe.nome}</span>
+                        </div>`
+
+                    } else {
+                        div_avancadas.innerHTML += `<div class="classe destaque">
+                        <img class="icon" src="${classe.caminho}">
+                        <span>${classe.nome}</span>
+                        </div>`
+                    }
+                }
+
+            }
+            if (!temClasse) {
+                if (i % 2 == 0) {
+                    div_regulares.innerHTML += `
+                        <div class="classe ">
+                            <img class="icon" src="${classe.caminho}">
+                            <span>${classe.nome}</span>
+                        </div>`
+
+                } else {
+                    div_avancadas.innerHTML += `
+                        <div class="classe ">
+                            <img class="icon" src="${classe.caminho}">
+                            <span>${classe.nome}</span>
+                        </div>`
+                }
+            }
+        }
+    }
+    criarClasses()
 
     function criarEspecialidades() {
 
         for (var categoriaAtual = 0; categoriaAtual < categorias.length; categoriaAtual++) {
             var categoria = categorias[categoriaAtual]
             var div = "div_" + categoria.caminho
-            var html = `<div id="${div}" class="card-especialidades scroll-moderno">`
+            var html = `
+            <div id="${div}" class="card-especialidades scroll-moderno">
+                <h3 id="h3_${categoria.caminho}">${categoria.nome}</h3>
+                <div class="campo-categoria">`
 
             for (var espAtual = 0; espAtual < categoria.especialidades.length; espAtual++) {
                 var especialidade = categoria.especialidades[espAtual]
-                html += `
-                <div class="campo-especialidade" id="div_${especialidade.caminho}" onclick="mostrarInformacoes(div_${especialidade.caminho})">
-                <img src="../assets/icon/especialidades/${categoria.caminho + especialidade.caminho}.png">
-                <span> ${especialidade.nome} </span>
-                </div>
-                `
+                var temEspecialidade = false
+
+                for (var espUsuario = 0; espUsuario < especialidadesUsuario.length; espUsuario += 1) {
+                    var espUsuarioAtual = especialidadesUsuario[espUsuario].especialidade
+
+                    if (espUsuarioAtual == especialidade.nome) {
+                        temEspecialidade = true
+                        html += `
+                        <div class="campo-especialidade tem-especialidade" id="div_${especialidade.caminho}" onclick="redirecionarProva('${especialidade.nome}')">
+                        <img src="../assets/icon/especialidades/${categoria.caminho + especialidade.caminho}.png">
+                        <span> ${especialidade.nome} </span>
+                        </div>
+                        `
+                    }
+                }
+                if (temEspecialidade == false) {
+                    html += `
+                        <div class="campo-especialidade tem-especialidade" id="div_${especialidade.caminho}" onclick="redirecionarProva('${especialidade.nome}')">
+                        <img src="../assets/icon/especialidades/${categoria.caminho + especialidade.caminho}.png">
+                        <span> ${especialidade.nome} </span>
+                        </div>
+                        `
+                }
             }
-            html += `</div>`
+            html += `</div></div>`
             div_especialidades.innerHTML += html
-            var divCategoria = document.getElementById("div_" + categoria.caminho)
-            divCategoria.style.display = 'flex'
         }
     }
     criarEspecialidades()
+
+    function redirecionarProva(nomeEspecialidade) {
+        for (var i = 0; i < categorias.length; i += 1) {
+            var categoria = categorias[i]
+            
+            for (var j = 0; j < categoria.especialidades.length; j += 1) {
+                var especialidade = categoria.especialidades[j]
+
+                if (especialidade.nome == nomeEspecialidade) {
+                    sessionStorage.CAT_PROVA = JSON.stringify([categoria.nome,categoria.caminho])
+                    sessionStorage.ESP_PROVA = JSON.stringify(especialidade)
+                    return window.location = "./provas.html"
+                }
+            }
+        }
+    }
 </script>

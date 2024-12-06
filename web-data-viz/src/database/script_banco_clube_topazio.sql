@@ -1,3 +1,4 @@
+drop database topazio;
 create database topazio;
 use topazio;
 
@@ -37,12 +38,11 @@ insert into classe (nome) values
 ('Pesquisador'),
 ('Pesquisador de Campo e Bosque'),
 ('Pioneiro'),
-('Pioneiro de Novas EStradas'),
+('Pioneiro de Novas Etradas'),
 ('Excursionista'),
 ('Excursionista na Mata'),
 ('Guia'),
-('Guia de Exploração'),
-('Agrupadas');
+('Guia de Exploração');
 
 select * from classe;
 create table classeMembro (
@@ -129,9 +129,26 @@ fkMembro int,
 fkEspecialidade int,
 primary key (fkMembro, fkEspecialidade),
 fkInstrutor int,
+dtRealizacao date,
 	constraint fkMembroEspecialidade foreign key (fkMembro) references membro(idMembro),
 	constraint fkEspecialidadeMembro foreign key (fkEspecialidade) references especialidade(idEspecialidade)
 );
+
+create table dt
+(dtdt date);
+
+insert into dt values
+('2010-02-02');
+select count(idEspecialidade) as qtdEspecialidades from membro 
+	join EspecialidadeMembro as espMembro
+		on membro.idMembro = espMembro.fkMembro
+    join especialidade as esp
+		on esp.idEspecialidade = fkEspecialidade 
+	where idMembro = 1 and month(dtRealizacao) = 12 group by dtRealizacao;
+    
+    
+    insert into especialidadeMembro values
+    (2,11,null,'2024-12-12');
 
 create table evento (
 idEvento int primary key auto_increment,

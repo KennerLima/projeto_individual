@@ -7,117 +7,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <style>
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+.pai {
+  width: 300px; /* Largura da div pai */
+  height: 200px; /* Altura da div pai */
+  overflow: auto; /* Adiciona barras de rolagem se necessário */
+  border: 2px solid black;
+  position: relative; /* Contexto de posicionamento */
+  display: flex;
+  flex-direction: column; /* Ou flex para organizar as divs */
+  flex-wrap: nowrap; /* Impede que quebrem linhas */
+  gap: 10px; /* Espaçamento entre as divs filho */
 }
 
-.form-container {
-    background: #fff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+.filho {
+  width: 150%; /* Maior que a largura da div pai */
+  height: 120%; /* Maior que a altura da div pai */
+  background-color: lightblue;
+  border: 2px solid darkblue;
+  position: relative; /* Cada div filho pode ser redimensionada separadamente */
+  text-align: center;
+  line-height: 240px; /* Centraliza verticalmente o texto */
 }
 
-h2 {
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #333;
-}
-
-.caracteristica {
-    display: block;
-    margin-bottom: 15px;
-    cursor: pointer;
-}
-
-.caracteristica input[type="checkbox"] {
-    display: none;
-}
-
-.custom-checkbox {
-    display: flex;
-    align-items: center;
-    border: 2px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    transition: 0.3s;
-    background: #f9f9f9;
-}
-
-.custom-checkbox .icon {
-    margin-right: 10px;
-    font-size: 20px;
-}
-
-.custom-checkbox .text {
-    font-size: 16px;
-    color: #333;
-}
-
-.caracteristica input[type="checkbox"]:checked + .custom-checkbox {
-    background: #007bff;
-    border-color: #007bff;
-    color: #fff;
-}
-
-.caracteristica input[type="checkbox"]:checked + .custom-checkbox .icon {
-    transform: scale(1.2);
-}
-
-button {
-    width: 100%;
-    padding: 10px 0;
-    border: none;
-    border-radius: 5px;
-    background: #007bff;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #0056cc;
-}
 
 </style>
 <body>
-    <div class="form-container">
-        <h2>Selecione suas características</h2>
-        <form id="caracteristicasForm">
-            <label class="caracteristica">
-                <input type="checkbox" name="caracteristica1" value="caracteristica1">
-                <div class="custom-checkbox">
-                    <span class="icon">🌟</span>
-                    <span class="text">Característica 1</span>
-                </div>
-            </label>
-
-            <label class="caracteristica">
-                <input type="checkbox" name="caracteristica2" value="caracteristica2">
-                <div class="custom-checkbox">
-                    <span class="icon">🔥</span>
-                    <span class="text">Característica 2</span>
-                </div>
-            </label>
-
-            <label class="caracteristica">
-                <input type="checkbox" name="caracteristica3" value="caracteristica3">
-                <div class="custom-checkbox">
-                    <span class="icon">💡</span>
-                    <span class="text">Característica 3</span>
-                </div>
-            </label>
-
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
+    <div class="pai">
+        <div class="filho">Filho 1</div>
+        <div class="filho">Filho 2</div>
+        <div class="filho">Filho 3</div>
+      </div>
+      
 </body>
 </html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="menu">
+            <h1>Topázio</h1>
+            <span>Olá, <span id="b_usuario"></span></span>
+            <div class="opt-menu">
+                <a href="visao_geral.html">Visão Geral</a>
+                <a href="provas.html">Prova</a>
+                <a href="dashboard2.html">Dashboard</a>
+                <span onclick="limparSessao()">Sair</span>
+            </div>
+        </div>
+        <div class="dash">
+
+            <div class="kpis">
+                <div class="kpi">
+                    <span class="titulo_kpi">Quantidade de Especialidades</span>
+                    <span class="dado_kpi" id="kpi_qtd_especialidades">18</span>
+                </div>
+                <div class="kpi">
+                    <span class="titulo_kpi">Intervalo Médio de Realização</span>
+                    <span class="dado_kpi" id="kpi_intervalo_realizacao"></span>
+                </div>
+                <div class="kpi">
+                    <span class="titulo_kpi">Sequência de Realização(Mês)</span>
+                    <span class="dado_kpi" id="kpi_sequencia"></span>
+                </div>
+            </div>
+            <div style="width: 70%; margin: auto; padding: 20px; color: black">
+
+                <div id="grafico_especialidades" class="display-none grafico-esp">
+                    <h3 class="tituloGraficos">
+                        <span id="titulografico">Quantidade de Especialidades Realizadas (Mês)</span>
+                    </h3>
+                    <div class="grafico">
+                        <canvas id="graficoEspecialidades"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    var listaJsonEsp = JSON.parse(sessionStorage.QTD_ESPECIALIDADES)
+    kpi_qtd_especialidades.innerHTML = JSON.parse(sessionStorage.QTD_ESPECIALIDADES)[1].qtdEspecialidades
+
+    function plotarGrafico() {
+
+        var dataCompleto = preencherMesesComZeros(listaJsonEsp);
+        var qtdEspecialidadesMes = []
+        for (i = 0; i < 12; i += 1) {
+            qtdEspecialidadesMes.push(dataCompleto[i].qtdEspecialidades)
+        }
+
+        const ctx = document.getElementById('graficoEspecialidades').getContext('2d');
+        const graficoEspecialidades = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Quantidade por Mês',
+                    data: qtdEspecialidadesMes,
+                    borderColor: '#d1a81c', 
+                    backgroundColor: '#ffd64fad', 
+                    fill: true, 
+                    tension: 0.3, 
+                }]
+            },
+            options: {
+                responsive: true, 
+                plugins: {
+                    legend: {
+                        display: true, 
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Meses'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Especialidades'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function preencherMesesComZeros(dados) {
+
+        const mesesCompletos = [];
+        for (var mes = 1; mes <= 12; mes++) {
+
+            const dado = dados.find(d => d.mes === mes);
+            if (dado) {
+                mesesCompletos.push(dado);
+            } else {
+                mesesCompletos.push({ qtdEspecialidades: 0, mes: mes });
+            }
+        }
+        return mesesCompletos;
+    }
+
+    plotarGrafico()
+
+</script>
+
+</html>
